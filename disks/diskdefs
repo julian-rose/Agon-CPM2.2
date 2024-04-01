@@ -9,6 +9,32 @@ diskdef nihirash
   os 2.2
 end
 
+# Exidy Sorcerer CPT image 5.25" SS DD 77T   <---- standard Exidy
+#  https://www.binarydinosaurs.co.uk/Museum/Exidy/Sorcerer3.php
+diskdef cpt1
+  seclen 256
+  tracks 77
+  sectrk 16
+  blocksize 2048
+  maxdir 128
+  skew 1
+  boottrk 2
+  os 2.2
+end
+
+# Exidy Sorcerer 5.25" SS DD 48tpi
+#  C:\Users\jrose\tech_stuff\retro\Exidy\disks\liaquay exidy-sorcerer\exidydefs.txt
+diskdef exi1
+  seclen 256
+  tracks 40
+  sectrk 16
+  blocksize 2048
+  maxdir 64
+  skew 5
+  boottrk 0
+  os 2.2
+end
+
 diskdef ibm-3740
   seclen 128
   tracks 77
