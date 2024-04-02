@@ -1,0 +1,76 @@
+     Prgm:   CRUNCH v2.3
+                              filename       date, etc.     Verbose
+                             /              /              /
+     Usage:  CRUNCH  {du:}<afn>  {du:}  { [id] }  { /Q | /V | /C}
+                       \           \                  \         \
+                        source      destination        Quiet     Confirm
+ 
+     Items  in curly brackets are optional (namely  everything  except
+     for  the  filename). The two optional 'du:' specs may be  of  the
+     form DU:, UD:, D: or U: where D is any legal drive letter, and  U
+     is  a user code from '0' thru '15' inclusive. The colon  must  be
+     typed.   The first 'du:' specifies where the filename '<afn>'  is
+     located,  and  it should immediately precede the  <afn>  with  no
+     intervening blanks if it is used.  If no drive is specified,  the
+     default (currently logged) drive is assumed. The same is true for
+     the  user  code.  The filename <afn> may  contain  the  ambiguous
+     (wildcard) characters '?' or '*' if desired.
+ 
+     The  second 'du:', which has the same form as the  one  described
+     above,  is an optional drive specifier where the output  will  be
+     directed.   No  filename may follow the the second  'du:'  -  the
+     filename will be generated automatically (see below).  As  above,
+     if either part of the 'du:' spec is not included (or if the  spec
+     is left out altogether) appropriate defaults will be used.
+ 
+     The resulting file will have the same name as the crunched  file,
+     except that the middle letter of the extension will be  converted
+     to  "Z".  If the original file's extension was blank, or  already
+     had a "Z" in the middle, then a filetype of "ZZZ" will be used.
+ 
+     [id] is an optional "date stamp" (or other information), used  to
+     identify the file.  If used, [id] consists of any text  contained
+     between a pair of square brackets (ie the brackets must  actually
+     be typed).  The text contained in [id] will be  recreated at  the
+     console  for the operator's reference when  the  file   is  later
+     uncrunched.
+ 
+     Three  command line options, "/Q", "/V" or "/C",  are  available.
+     If  used, the option should be last on the command line, and  the
+     "/"  must be preceded by a space.  Although the  technical  usage
+     above  implies only one letter may be used, rev 2.3  will  accept
+     any two options.  Other combinations,  which  would  include both
+     Q and V, are contradictory.
+ 
+     "/Q"  and  "/V" will "quiet down" a version of CRUNCH  which  has
+     been  configured to be "verbose", or cause a "verbose" run  of  a
+     program  normally configured to be "quiet".  This relates to  the
+     amount of information sent to  the console while the function  is
+     in progress.
+ 
+     "/C", the confirm option, is used for selective crunching.  Norm-
+     ally  used  in conjunction with wildcard filespecs,  this  option
+     causes the program to ask "Y/N" for each matching file. Only  the
+     files to which "Y" is responded will be crunched.  Selecting this
+     option  causes  the program to automatically ask  for  additional
+     confirmation  if a pre-existing file is about to be  overwritten,
+     regardless of the program's configuration.
+     Prgm:   UNCR  v2.3
+ 
+                            filename       Quiet     Confirm
+                           /              /         /
+     Usage:  UNCR  {du:}<afn>  {du:}  { /Q | /V | /C}
+                     \           \             \
+                      source      destination   Verbose
+ 
+     All  usage,  options, and patches are identical  to  CRUNCH,  de-
+     scribed  above, except that no  [id] can be specified. Also  note
+     that  the that the resulting filename will be recreated from  the
+     name of the file that was originally crunched.
+ 
+     It  is not necessary that the file to be uncrunched have  "Z"  as
+     the  middle letter of the extension; an attempt will be  made  to
+     uncrunch  any filename explicitly specified.  Note  however  that
+     "UNCR *.*" will be internally converted to "UNCR *.?Z?" to facil-
+     itate quickly uncrunching all crunched files in a mixed group.
+ 
