@@ -20,10 +20,10 @@ This is the manner Nihirash's CPM finds drives at runtime.<br>
 To accomodate an increasing number of disk images, I have given each ./disks/images/ a meaningful name.<p>
 
 To build all the disk images, cd into ./disks and run ./build.sh; I do this using cygwin (and cpmtools).<br>
-The build.sh script takes only the last letter of the disk image name (as in j from ./images/adventure-j) to generate an image (as in ./cpmj.dsk).<br>
+Note the build.sh script takes only the last letter of the disk image name (as in j from ./images/adventure-j) to generate an image (as in ./cpmj.dsk).<br>
 You may have several disk images ending with the same letter, in which case build.sh will overwrite like-named ones.<p>
 
-If you want to build an individual image, rather than run ./buidh.sh, (assuming cpmj.dsk is to be built) do:
+If you want to build an individual image, rather than run ./build.sh, (assuming cpmj.dsk is to be built) do:
 <ol>
   <li>rm cpmj.dsk</li>
   <li>cp template.dsk cpmj.dsk</li>
