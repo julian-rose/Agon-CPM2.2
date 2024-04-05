@@ -1,24 +1,11 @@
 # CP/M 2.2 for Agon Light (more disk images)
 
-This is a fork of Nihirash's Agon-CPM2.2 project, with new disk images added.<p>
+A fork of Nihirash's Agon-CPM2.2 project, with new disk images added.<p>
 
 You will find the new images in my playpen branch.<br>
-You can get all the content from the playpen branch, or you can take each disk image individually.<p>
-
-Disk images I have uploaded as of this writing:<br>
-<ul>
-  <li>adventure-J:   Scott Adam's adventure games, and a version of startrek.bas edited for the Exidy Sorcerer.</li>
-  <li>bbc-basic3-i:  R. T. Russell's original BBC BASIC 3.0 (you will need to run CONVERT.COM on .bas files to create .bbc files)</li>
-  <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R only 8-)</br>
-                 See also bdsc-c, the richer set of files from BDS C disk, made by Nihirash</li>
-  <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
-  <li>startkit-e:  Utilities to uncompress archive files; CP/M software was often compressed for exchange on bullet-in boards</li>
-</ul>
+As of this time, they are not pulled into the main branch.<p>
 
 Each disk image is given a unique drive letter, in the range cpma..cpmp<br>
-This is the manner Nihirash's CPM finds drives at runtime.<br>
-To accomodate an increasing number of disk images, I have given each ./disks/images/ a meaningful name.<p>
-
 To build all the disk images, cd into ./disks and run ./build.sh; I do this using cygwin (and cpmtools).<br>
 Note the build.sh script takes only the last letter of the disk image name (as in j from ./images/adventure-j) to generate an image (as in ./cpmj.dsk).<br>
 You may have several disk images ending with the same letter, in which case build.sh will overwrite like-named ones.<p>
