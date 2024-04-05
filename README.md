@@ -1,9 +1,9 @@
 # CP/M 2.2 for Agon Light (more disk images)
 
-This is a fork of Nihirash's Agon-CPM2.2 project, with new disk images added.<p>
+A fork of Nihirash's Agon-CPM2.2 project, with more CP/M disk images.<p>
 
-You will find the new images in my playpen branch.<br>
-You can get all the content from the playpen branch, or you can take each disk image individually.<p>
+You will find new disk images in the playpen branch.<br>
+You can get all the content from there, or you can take each disk image individually.<p>
 
 Disk images I have uploaded as of this writing:<br>
 <ul>
@@ -12,16 +12,19 @@ Disk images I have uploaded as of this writing:<br>
   <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R only 8-)</br>
                  See also bdsc-c, the richer set of files from BDS C disk, made by Nihirash</li>
   <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
+  <li>pmarc-p:     PMARC archiver for uncompressing PMA archive files. Could be added to startkit, but from a different source.</li>
   <li>startkit-e:  Utilities to uncompress archive files; CP/M software was often compressed for exchange on bullet-in boards</li>
+  <li>ZDE-e:       ZDE programmers editor for CP/M-80. Not the vi editor I was looking for, but a simple programmers editor. Uses a small number of wordstary / emacsy commands. 
 </ul>
 
 Each disk image is given a unique drive letter, in the range cpma..cpmp<br>
 This is the manner Nihirash's CPM finds drives at runtime.<br>
-To accomodate an increasing number of disk images, I have given each ./disks/images/ a meaningful name.<p>
+To accomodate an increasing number of disk images, I have renamed Nihirash's images and given each ./disks/images/ a meaningful name.<p>
 
 To build all the disk images, cd into ./disks and run ./build.sh; I do this using cygwin (and cpmtools).<br>
+(If you get an error reading build.sh, you need to do a dos2unix conversion.)<br>
 Note the build.sh script takes only the last letter of the disk image name (as in j from ./images/adventure-j) to generate an image (as in ./cpmj.dsk).<br>
-You may have several disk images ending with the same letter, in which case build.sh will overwrite like-named ones.<p>
+There are several disk images ending with the same letter, in which case later built images will overwrite like-named ones.<p>
 
 If you want to build an individual image, rather than run ./build.sh, (assuming cpmj.dsk is to be built) do:
 <ol>
@@ -30,7 +33,7 @@ If you want to build an individual image, rather than run ./build.sh, (assuming 
   <li>cpmcp -fnihirash cpmg.dsk images/creative-computing-games-g/*.* 0:</li>
   <li>cpmls -fnihirash cmpj.dsk</li>
 </ol>
-The last step is a sanity check to list the content of your built disk image.<p>
+The last step lists the content of your built disk image.<p>
 
 You can read a bit more in ./disks/readme.jhr.txt on creating disk images.<p>
 
