@@ -14,7 +14,13 @@ Disk images I have uploaded as of this writing:<br>
   <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
   <li>pmarc-p:     PMARC archiver for uncompressing PMA archive files. Could be added to startkit, but from a different source.</li>
   <li>startkit-e:  Utilities to uncompress archive files; CP/M software was often compressed for exchange on bullet-in boards</li>
+  <li>wordmaster-e: MicroPro Word Master text editor with video, command and inseet modes. Patched for Agon, video mode.</li>
   <li>ZDE-e:       ZDE programmers editor for CP/M-80. Not the vi editor I was looking for, but a simple programmers editor. Uses a small number of wordstary / emacsy commands. 
+</ul>
+
+Things I have changed on Nihirash's disk images:<br>
+<ul>
+  <li>cpm+util-a:  Added ZSID, the later Digital Reserach Symbolic Debugger for Z80 (cpma).</li>
 </ul>
 
 Each disk image is given a unique drive letter, in the range cpma..cpmp<br>
