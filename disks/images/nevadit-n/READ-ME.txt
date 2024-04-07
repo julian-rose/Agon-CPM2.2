@@ -1,0 +1,67 @@
+This file will be used to provide update information that may
+be required between printings of the EDIT reference manual.
+
+Please refer to Section 2 of the manual for information on
+installing a working version of EDIT on specific equipment.
+
+When you have a version working on your computer and terminal,
+you may run the additional program EDTKEY if you wish to
+change the keyboard keys used for specific edit functions.
+The program will prompt you how to proceed.
+
+The file NVEDIT.PRN contains information for further configuring
+to meet special needs of unusual terminals.  For example, some
+require the ability to retain 8 bits on input, and some require
+delays after certain terminal control functions.
+
+for further configuring
+to meet special needs of unusual terminals.  For example, some
+require the ability to retain 8 bits on input, and some require
+delays after certain terminal control functions.
+
+s.  If
+you are using the Videx 80 column board on your Apple, the
+Control-A key has been reassigned to Control-S and the
+Control-S key has been reassigned to Control-D.
+
+The file NVPILOT.PRN contains information for further
+configuring to meet special needs or to change keys used
+for special functions.  Some models of Televideo terminals that
+do not respond to codes for insert line or delete line require
+that you use this method to obtain these functions.  Select the
+Televideo choice when you run NVPILOT and if these functions
+do not work, then use DDT to place a zero in the IL and DL
+locations.  This will force a rewriting of the screen.
+
+The APPEND statement is not well described and will be
+rewritten in the next edition of the manual.
+The normal operation of the first WRITE statement after OPENF
+is to overwrite information present in an existing file.  The
+APPEND statement may be used after OPENF to retain any existing
+information in the file, moving the point at which WRITE will
+add information to the current end-of-file location.
+
+An additional PILOT statement DIR has been added to
+display file directory information.  It may be used in either
+immediate or run mode.  It displays either all files or just
+.PLT files as determined during the installation process.
+
+An additional PILOT statement XS (EXECUTE SYSTEM)
+has been added to allow
+overlay and execution of a CP/M program.  Usage is:
+XS: <CP/M file name> [<optional parameters>]
+
+An additional PILOT statement RL has been added to
+provide scrolling of screen information during PILOT program
+execution.  Usage is: RL:n  (n=no. of lines scrolled)
+
+An additional PILOT statement READ has been added to
+allow reading a line of data into the entry buffer and into a
+string variable.  After OPENing the file, usage is:
+READ:<expression>[,$LABEL]
+<expression> refers to file number, the optional $LABEL is the
+string variable name.
+
+For keyboards that do not provide a backward slash (\), CTL-F
+may be used to force immediate execution or abort operation.
+
