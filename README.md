@@ -12,41 +12,42 @@ Disk images I have uploaded as of this writing:<br>
   <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R only 8-)</br>
                  See also bdsc-c, the richer set of files from BDS C disk, made by Nihirash</li>
   <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
+  <li>nevadit-n:   Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
   <li>pmarc-p:     PMARC archiver for uncompressing PMA archive files. Could be added to startkit, but from a different source.</li>
   <li>startkit-e:  Utilities to uncompress archive files; CP/M software was often compressed for exchange on bullet-in boards</li>
-  <li>wordmaster-e: MicroPro Word Master text editor with video, command and inseet modes. Patched for Agon, video mode.</li>
+  <li>vedit-m:     V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a rich command mode. Patched for Agon.</li>
+  <li>wordmaster-e: MicroPro Word Master text editor with video, command and insert modes. Patched for Agon.</li>
   <li>ZDE-e:       ZDE programmers editor for CP/M-80. Not the vi editor I was looking for, but a simple programmers editor. Uses a small number of wordstary / emacsy commands. 
 </ul>
 
 Things I have changed on Nihirash's disk images:<br>
 <ul>
-  <li>cpm+util-a:  Added ZSID, the later Digital Reserach Symbolic Debugger for Z80 (cpma).</li>
+  <li>cpm+util-a:  Added ZSID, the later Digital Research Symbolic Debugger for Z80.</li>
 </ul>
 
-Each disk image is given a unique drive letter, in the range cpma..cpmp<br>
-This is the manner Nihirash's CPM finds drives at runtime.<br>
-To accomodate an increasing number of disk images, I have renamed Nihirash's images and given each ./disks/images/ a meaningful name.<p>
+On the SD-card each disk image is given a unique drive letter, in the range cpma..cpmp<br>
+To accomodate an increasing number of disk images, I have renamed Nihirash's images and given each ./disks/images/ a meaningful name. For example, cpma.dsk has become cpm+util-a.dsk<p>
 
-To build all the disk images, cd into ./disks and run ./build.sh; I do this using cygwin (and cpmtools).<br>
-(If you get an error reading build.sh, you need to do a dos2unix conversion.)<br>
+To build all the disk images, cd into ./disks and run ./build.sh; I do this using cygwin (with cpmtools installed).<br>
+(If you get an error running build.sh, you likely need to do a dos2unix conversion on ./diskdefs.)<br>
 Note the build.sh script takes only the last letter of the disk image name (as in j from ./images/adventure-j) to generate an image (as in ./cpmj.dsk).<br>
 There are several disk images ending with the same letter, in which case later built images will overwrite like-named ones.<p>
 
-If you want to build an individual image, rather than run ./build.sh, (assuming cpmj.dsk is to be built) do:
+If you want to build an individual image, rather than run ./build.sh, (assuming cpmg.dsk is to be built) do:
 <ol>
-  <li>rm cpmj.dsk</li>
-  <li>cp template.dsk cpmj.dsk</li>
+  <li>rm cpmg.dsk</li>
+  <li>cp template.dsk cpmg.dsk</li>
   <li>cpmcp -fnihirash cpmg.dsk images/creative-computing-games-g/*.* 0:</li>
-  <li>cpmls -fnihirash cmpj.dsk</li>
+  <li>cpmls -fnihirash cmpg.dsk</li>
 </ol>
-The last step lists the content of your built disk image.<p>
+The second step creates a blank formatted 8MB disk image (using nihirash formatting - see diskdefs). The third step copies the content of ./images/creative-computing-games-g/ to the blank disk. The last step lists the content of your built disk image.<p>
 
 You can read a bit more in ./disks/readme.jhr.txt on creating disk images.<p>
 
-You can copy your choice of disk images to a sub-directory, cpm, on your SD-card; along with the cpm.bin image in the same sub-directory.<br>
+You can copy your choice of disk images to a sub-directory, e.g. ./cpm, on your SD-card; along with the cpm.bin image in the same sub-directory.<br>
 (You can download Nihirash's cpm.bin image from the zip file in https://github.com/nihirash/Agon-CPM2.2/releases/tag/1.1.)<br>
-At runtime, from the MOS prompt: cd cpm, load cpm.bin, run.<br>
-And from within cpm: cd J: for drive j, and dir to see the content.<br>
+At runtime, from the MOS prompt: cd cpm; load cpm.bin; run.<br>
+And from within cpm: cd G: for drive g, and dir to see the content.<p>
 
 Everything below is as-is from Nihirash's project. Including the request for coffee.<p>
 
