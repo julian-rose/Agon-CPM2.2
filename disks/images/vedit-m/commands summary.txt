@@ -1,0 +1,64 @@
+VEDIT PLUS                                                    Appendix A
+                                                               CRT Notes
+
+                        DEFAULT KEYBOARD LAYOUT
+
+"UPPER/LOWER CASE ESCAPE SEQUENCES EQUIVALENT?"   Yes
+
+[CURSOR UP]               <CTRL-E>
+[CURSOR DOWN]             <CTRL-C>
+[CURSOR RIGHT]            <CTRL-D>
+[CURSOR LEFT]             <CTRL-S>
+[BACK TAB]                <CTRL-Q>
+[TAB CURSOR]              <CTRL-B>
+[ZIP]                     <CTRL-G>
+[LINE TOGGLE]             NOT USED
+[NEXT LINE]               <CTRL-J>           Often labeled LINE FEED
+[SCROLL UP]               <CTRL-R>
+[SCROLL DOWN]             <CTRL-V>
+[SCROLL RIGHT]            <CTRL-Y>
+[SCROLL LEFT]             <CTRL-T>
+[PREVIOUS WORD]           <CTRL-A>
+[NEXT WORD]               <CTRL-F>
+[PREVIOUS PARAGRAPH]      ESC - W
+[NEXT PARAGRAPH]          ESC - X
+[PAGE UP]                 <CTRL-W>
+[PAGE DOWN]               <CTRL-X>
+[SCREEN TOGGLE]           NOT USED
+[INSERT]                  <CTRL-N>           Think I[N]sert
+[DELETE]                  <DEL>
+[BACKSPACE]               <CTRL-H>           Often labeled BACKSPACE
+[DEL PREVIOUS WORD]       ESC - A
+[DEL NEXT WORD]           ESC - F
+[ERASE TO END OF LINE]    <CTRL-L>
+[ERASE LINE]              <CTRL-K>           Think [K]ill Line
+[UNDO]                    <CTRL-U>
+[TAB CHARACTER]           <CTRL-I>           Often labeled TAB
+[NEXT CHAR LITERAL]       ESC - Q
+[REPEAT]                  ESC - R
+[FIND]                    ESC - 2
+[REPLACE]                 ESC - 3
+[CANCEL]                  <CTRL-Z>
+[INDENT]                  <CTRL-P>
+[UNDENT]                  <CTRL-O>
+[FORMAT PARAGRAPH]        ESC - J            Think [J]ustify
+[MACRO]                   ESC - C            Think [C]ommand Macro
+[VISUAL EXIT]             ESC - E
+[VISUAL ESCAPE]           ESC - ESC
+[DEFINE]                  ESC - D
+[HELP]                    ESC - ?
+[GOTO]                    ESC - G
+[FILE]                    ESC - 0            ESC - "Zero"
+[BLOCK]                   ESC - B
+[PRINT]                   ESC - P
+[WINDOW]                  ESC - 9
+[USER]                    ESC - U
+[MISC]                    ESC - M
+[BLOCK]-C                 ESC - 4            "Copy to text register"
+[BLOCK]-M                 ESC - 5            "Move to text register"
+[BLOCK]-I                 ESC - 6            "Insert text register"
+[GOTO]-M                  ESC - 7            "Set text marker"
+[GOTO]-J                  ESC - 8            "Jump to text marker"
+[GOTO]-H                  ESC - H            "Home"
+[GOTO]-Z                  ESC - Z            "Zend"
+[CANCEL]                  ESC - 1            Alternate key for CANCEL
