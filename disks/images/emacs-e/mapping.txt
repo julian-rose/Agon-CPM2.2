@@ -1,0 +1,25 @@
+^@ gotobol         M-Y killbuf, TVI "PAGE ERA"  M-_ lowerword
+^B wordback        M-*  setmark "SHIFT-CLEAR"   M-~ twiddle
+^C forwpage        M-!  reposition              ^X^B listbuf
+^D forwdel         M-b  del word back           ^X^C Hard quit.
+^E gotoeol         M-c  capword                 ^X^F visit file
+^F forwword        M-f  delfword                ^X^J scroll down window
+^G ctrlg           M-g  gotobob gotoline        ^X^K scroll up window
+^H backchar        M-G  gotoeob                 ^X^L lowercase region
+^I tab             M-I  exec kbmac BACKTAB      ^X^N change name
+^J forw            M-j  upperc reg "SHIFT up"   ^X^O deblank
+^K backline        M-L  killreg "SHIFT PRINT"   ^X^R fileread
+^L forwchar        M-P  copyregion "PRINT"      ^X^S filesave
+^M inde            M-Q  quote "CHAR INS"        ^X^V scroll down window
+^N fsearch         M-R  vi kill "LINE DEL"      ^X^W write file
+^O openline        M-T  kill "LINE ERA"         ^X^Z shrink current window
+^P bsearch         M-w  word mode               ^X=  show cursor stats
+^R backpage        M-W  Word mode               ^X1  one window  ^X2 split win
+^U parameter       M-Y  killbuf "PAGE ERA"      ^\   negative param
+^V TVI DOWN ARR    M-\  refresh                 ^Xb  use buffer
+^X prefix          M-_  lowerword               ^X(  startmacro  ^X) endmacro
+^Y yank            M-^  upperword               ^Xz  grow window
+^Z swapmark"CLEAR" ^^   next buf "HOME"         ^Xn  nextwind    ^Xp prevwind
+^[ META prefix     ^?   backdel                 M-\  refresh
+
+

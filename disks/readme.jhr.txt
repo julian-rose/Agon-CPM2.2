@@ -36,3 +36,10 @@ Then based on ./build.sh, do
 to add files from images/h/ to the blank disk cpmh.dsk
 
 Refer to: https://www.mankier.com/1/mkfs.cpm or https://sizeof.cat/post/cp-m-development-setup/
+
+
+3. cpmcp incantation
+--------------------
+To copy files from SD-card (mounted on cygwin /cygdrive/d/) to my PC working directory:
+cpmcp -fnihirash /cygdrive/d/cpm/cpmn.dsk 0:editansi.com images/nevadit-n/editansi.com
+

@@ -1,0 +1,45 @@
+;
+;pip a:=c:meov032.ovr
+;era a:meov032.ozr
+;crunch a:meov032.ovr
+;
+;
+;pip a:=c:meov033.ovr
+;era a:meov033.ozr
+;crunch a:meov033.ovr
+;
+;
+ERA A:BINDIST.LBR
+XSUB
+LU310
+-O A:BINDIST.LBR
+64
+-A -READMEB.1ST
+-A POSTING.0
+-A Z80EMACS.DOC
+-A Z80EMACS.REF
+-A MAPKEYS.DOC
+-A METERM.DOC
+-A BINDIST.SUB
+-A C:ME.COM
+-A A:MEOV032.OZR
+-A A:MEOV033.OZR
+-A C:*.OVR
+-A MAPKEYS.COM
+-A MECONFIG.COM
+-A C:METERM.COM
+-A C:TELANSI.C
+-A C:TELANSI.O
+-A C:ME.SYM
+-A MAPPING.TXT
+-A ZMECMDS.LST
+-A C:ME.RSM
+-C
+-X
+.
+;
+ERA A:BINDIST.LZR
+crunch a:bindist.lbr
+;
+;
+

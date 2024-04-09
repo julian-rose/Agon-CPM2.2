@@ -1,0 +1,223 @@
+"Binding" is one of those words of emacs jargon that might
+be bothersome, but we have to use it.
+
+The idea is that an editor contains a certain set of commands, 
+which are always the same commands no matter what keystrokes are 
+used to invoke them. The association of a keystroke to a
+command is called a "binding".
+
+Editors derived from emacs have an internal structure that makes
+it easy to change the bindings ( unlike WordStar or VDE ).
+
+On a big computer, you can change emacs bindings online; but z80emacs 
+has to fit in 64KB, so the bindings are done offline.
+
+Z80emacs comes with a default set of bindings already installed. 
+These bindings are just fine for the terminal I use, but you 
+probably will want to change them in your copy of the program.
+
+Here's how:
+
+First, make sure you have a copy ( NOT your only copy! ) of ME.COM
+on your current disk and user area; make sure you have ZMECMDS.LST,
+ME.SYM, MAPKEYS.COM, and MECONFIG.COM.
+
+Take a look at ZMECMDS.LST, but don't change it!
+This file contains a list of the names of all the commands in 
+z80emacs, and for each command there is a number.
+
+The command names are in the format of the UECS ( Universal Editor
+Command Set ), version 1.0; each name starts with a prefix
+that assigns the command to a class of commands.
+
+In order to customize the bindings, you will have to run two programs, 
+first MAPKEYS.COM and then MECONFIG.COM.
+
+MAPKEYS.COM will read the ZMECMDS.LST file as part of its processing.
+Another part of its processing will be to read the keyboard, and 
+you'll be typing in these names. Fortunately, you won't have to type 
+in the whole name ( as we'll see later ).
+
+MECONFIG.COM will read a file produced by MAPKEYS ( MAPTABLE.ZME ),
+will read ME.COM and ME.SYM, and will write the new bindings out to ME.
+COM. It installs the bindings by patching them into the program.
+
+======================================================
+=                                                    =
+= USING MAPKEYS.COM                                  =
+=                                                    =
+======================================================
+
+After you start MAPKEYS, it will tell you how many lines it read from 
+ZMECMDS.LST, and then ask you to "Enter a name: ".
+
+If you just hit RETURN, it will list all the commands, one screenful 
+at a time, with "[Return to continue]".
+
+Try typing "word" at this prompt ( leave out the quotes, hit RETURN 
+at the end of it ). MAPKEYS will list for you about 9 commands that 
+include the word "Word", and tell you how many commands it matched.
+Neat stuff, huh?
+
+If you manage to match exactly one name, MAPKEYS will prompt you to 
+"Enter a keystroke sequence: ".
+
+You can just type the sequence that you want to use to invoke the 
+command, and then hit RETURN. This is easy enough, but how do you 
+map something to RETURN? or to LINEFEED?
+
+Aha, there's a trick! I figured that you wouldn't want to map the
+carat ( "^" ) to anything else ( in fact you can't, as I'll explain 
+later when I tell you what you CAN't map ), so:
+
+    If you type "^M" ( a carat and an M ), MAPKEYS interprets it
+    as meaning ^M ( control-M, or carriage return ).
+
+At the "Enter a keystroke sequence: " prompt, if you don't want to 
+make a new mapping for this command after all, just hit RETURN right 
+away.
+
+There's one more trick you need to know about: how to UNMAP a key!
+
+The problem is this: there is a predefined amount of space allocated 
+for the command dispatch tables. If you map ^J to something, MECONFIG
+will see that ^J used to be mapped to something else, and will 
+free up the slot in the table that was used by the old mapping.
+
+But, if you map ^X^J to something, you've used up one of the empty 
+slots! Suppose you map it to EC-Word-Forw; MECONFIG does NOT assume 
+that you want to unmap ^F; it's legitimate to have more than one 
+sequence bound to the same command!
+
+To keep from running out of slots in the table, you may have to 
+explicitly UNMAP some sequences by mapping them to
+"Undefined-Function".
+
+======================================================
+=                                                    =
+= WHAT'S A "SEQUENCE"; WHAT YOU CAN'T DO             =
+=                                                    =
+======================================================
+
+In the standard emacs command-space, there are 384 possible
+sequences of keystrokes that could be mapped to commands.
+( but only 382 sequences ).
+
+First of all, there are the 128 normal ASCII characters.
+In any proper emacs, they are all mappable; but in order to be
+able to keep up with your flying fingers, z80emacs had to make 
+a few compromises; four special characters, ^U, ^\, ^X, and ESCAPE,
+are hardcoded in the program, and can't be reassigned
+( this defect came with the original microemacs code ),
+and the printable characters are all forced to be self-inserting
+( type an 'A', get an 'A' in the file ).
+
+Secondly, there are 128 "meta-characters", which you type by 
+hitting ESCAPE and then hitting any of the 128 normal ASCII 
+characters.
+
+Third and last, there are 128 "control-X" characters, that you 
+enter by hitting ^X and then something else.
+
+By the way, lhe other special characters I mentioned,
+control-U and control-\, are used when you want to start typing in
+a numerical argument to feed to the next regular command.
+
+Thus, there are 284 different command sequences that can be 
+remapped, which makes z80emacs pretty well customizable, though
+not perfectly so.
+
+There are only 67 or so commands that you can assign to these 
+380 command sequences, so most sequences will be undefined.
+The command space is much larger than the number of commands, so 
+multiple mappings are sensible; a multiple mapping is where you 
+have two or more sequences bound to the same command, in other words, 
+more than one way to do the same thing.
+
+Only 4 of the commands are built in to the root segment, and always 
+stay in memory: ^G ( CI-Abort-Cancel ), right arrow, left arrow, and
+self-insert; self-insert isn't in the internal dispatch table,
+and there is only one free slot in this table
+( this is relevant to the discussion about running out of slots; see above ).
+
+All the other commands live in overlays, and their dispatch table has 
+5 extra entries. A few commands already have multiple sequences in
+the default mapping ( this is because some ASCII teminals send ^J 
+for down-arrow, but others send ^V ).
+
+If you're running out of space in the overlay dispatch table because 
+you are making lots of multiple mappings, there are commands you can 
+get rid of:
+"deblank", 
+"lowercase region", "uppercase region",
+"previous window" ( "next window" is good enough, you won't have so 
+many windows that you need a "previous window" command ), 
+"shrink window" ( you can always change to the other window and enlarge it ), 
+"scroll down window" ( you can hit ^\^X^K, "scroll up" with a negative 
+parameter ),
+"scroll up window" ( to save space, z80emacs doesn't do fancy screen 
+updating, so the scrolling commands aren't too great ),
+"capitalize word", "lowercase word", "uppercase word".
+
+======================================================
+=                                                    =
+= CHOOSING A MAPPING; WHY THE DEFAULT IS SO AWFUL    =
+=                                                    =
+======================================================
+
+If you're used to any of the several standard incompatible
+forms of emacs, the default mapping is awful because it isn't
+like the one you're used to.
+
+The default mapping is a compromise between a newfangled 
+"theoretically best" mapping I almost finished working out,
+and an oldfashioned desire to be able to use all the fancy
+keys on the terminal I used while developing z80emacs.
+I should clean this up, of course...
+
+The commands labeled ZMAP in "mapping.h" are theoretical;
+the theoretical mapping is a compromise between ergonomics
+( frequently-used commands are easy to type, a consideration
+that most emacs command sets overlooked; for example, most 
+emacses use M-f for word forwards, M-v for page back ), 
+and mnemonics ( less-often-used commands try to be easier to 
+remember ).
+
+The commands with TVI in their comments are based on my function 
+keys.
+
+Several useful control keys were left unmapped: 
+
+^A because I thought I might put in "magic mode", so I could use 
+the FUNCT key on my terminal,
+
+^Q and ^S because lots of terminals eat these,
+( if you can use ^Q, please don't make it "quote" as emacs does;
+it's so stupid to use up an easy-to-type character for a 
+rarely-used command ),
+
+^W should probably be zmap for delete-word-forward,
+
+^] and ^_ could be used for anything you want.
+
+To choose your own mapping, I recommend that you try keeping ZMAP
+commands as they are, and remap the TVI commands to whatever your 
+terminal does.
+
+Of course, if your terminal sends ^[[A for up-arrow, you're out of 
+luck. If there's ever another release, this should be fixed.
+
+======================================================
+=                                                    =
+= PRINTING OUT WHAT MAPPING YOU INSTALLED            =
+=                                                    =
+======================================================
+
+There should be a program to read ME.COM and report on the 
+installed mapping; there isn't.
+
+Have fun,
+
+Ralph Betza,	October 4, 1991
+
+

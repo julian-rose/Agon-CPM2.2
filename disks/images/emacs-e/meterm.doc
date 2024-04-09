@@ -1,0 +1,67 @@
+Terminal customization for z80emacs is accomplished by using the 
+program METERM.COM
+
+In order to keep the program as small as possible, thus allowing 
+you to edit as much data as possible, I assumed that there are only 
+two kinds of terminals in the world: ANSI and ASCII.
+
+I also restricted z80emacs to using just three different terminal 
+control sequences: direct cursor motion, clear-to-end-of-line, and
+clear-whole-screen.
+
+In order to keep the program as small as possible, I didn't use a 
+fancy termcap package ( though, if I had one, I could have 
+initialized it in an overlay, so my feeble excuse doesn't hold
+much water ). Another consideration is that, once z80emacs is 
+installed, it will "always" be used with one and only one 
+terminal type, and reading a termcap file would take time
+( a slightly better argument; METERM.COM is like an overlay 
+that only executes once ).
+
+That's what meterm is about: it reads ME.SYM and ME.COM, 
+reports what it finds, gets input from the user, and writes new 
+data to ME.COM; meterm is very careful to check that ME.COM 
+matches ME.SYM, by the way, so nothing cango rwong.
+
+Just in case, meterm tells you where the ansimove() routine is 
+found, so that you can patch it if you need to; in case you need 
+to do so, the binary distribution includes TELANSI.C, TELANSI.ASM,
+TELANSI.O, and my apologies...
+
+Most people shouldn't need to patch.
+
+If your terminal is like a PC or like a VT100, it's ANSI; otherwise, 
+it's almost sure to be ASCII.
+
+The sequences for clear-to-end-of-line and clear-whole-screen are 
+simply sent out as they appear in the termctrl[] table.
+
+The problem is direct-cursor-motion; that's why there's a variable 
+called "ansiterm", that tells the ansimove() subroutine whether 
+it's dealing with an ANSI or ASCII terminal.
+
+If ASCII, the cursor-motion sequence is probably 4 bytes long, 
+escape, '=', space, space; the first two characters are sent 
+out as is, the third character is added to the binary line 
+number and sent out, the fourth character is added to the 
+binary column number and sent out. This works as is for televideo, 
+wyse, qume, ADM, etc., etc; for a few others, you may have to modify 
+the second character.
+
+    If the sequence isn't 4 bytes long, if the column number needs 
+    to be sent first, you'll have to patch.
+
+If ANSI, the cursor-motion sequence as stored by z80emacs is 4 
+bytes long: "1b 5b 3b 48". The first two are sent out as is,
+then the line number is sent out in decimal, then the third is 
+sent out, then the column number in decimal, then the fourth.
+
+In both cases, you can specify the sequence as being longer than 
+4 bytes in order to send out "padding" bytes.
+
+You may think this is a monumental kludge, but I think it's an
+elegant simplification. Nyahh, nyaah, so there!
+
+----Ralph Betza, October 1, 1991
+
+

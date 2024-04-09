@@ -1,0 +1,143 @@
+This is a CP/M, Z80 version of emacs, derived from 
+microemacs version 3.6; the CP/M version was created by 
+Ralph Betza in 1989.
+
+Z80EMACS is an editor, not a word processor. 
+It's also not really finished, although as it stands it works quite 
+well and is more feature-rich than any other CP/M editor.
+( No, it doesn't have wordprocessing features; it's an editor, not... ).
+
+This is a good place for a commercial: Z80EMACS isn't quite finished; 
+it lacks several features that I think any decent editor really ought 
+to have ( but few do ). If enough people send checks to 
+
+	Ralph Betza
+	646 11th Avenue
+	New Hyde Park, NY, 11040
+
+there will be another release of Z80EMACS, with new features, and with 
+fixes ( if any are needed ;-) I won't do it if nobody cares, but I'll
+work for a buck an hour on it if enough people do care. This isn't 
+shareware, so don't feel guilty...
+
+End of commercial.
+
+Z80EMACS is a so-called "modeless" editor, like WordStar and VDE;
+control characters are commands, and printable characters get put into 
+the file.
+
+Here are some of the features of Z80EMACS that make it so much more 
+powerful than what you're used to seeing on CP/M:
+
+1. As in any version of emacs, you can use Z80EMACS to edit more than 
+one file at a time; not all of the files being edited need to be on
+the screen at the same time, but more than one of them can be --
+Given that there are 24 screen lines available, and each file shown 
+must get at least 2 lines of the screen, you could get up to 12 files 
+shown at once. ( You wouldn't want to, but you could ).
+
+   Two files at once on the screen is usually enough -- an include file 
+   and a program. Two files at once being edited is often not enough; 
+   the number of files in Z80EMACS is limited only by available memory.
+
+   In EMACS, we like to call each file a "buffer". You can be editing 
+   text that doesn't have a filename. ( You'll find there are uses for 
+   this ).
+
+   It's easy to copy or move text from one file to another.
+   
+2. You can reconfigure Z80EMACS; if you want ^N to be the down-arrow 
+key, you can have what you want.
+
+   See MAPKEYS.DOC for details.
+
+3. When you delete text, you can get it back; this is great if you
+made a mistake, and it's also part of the method used to move or copy 
+text.
+
+4. Up-arrow and down-arrow move straight up and down the screen -- 
+like WordStar, not like VDE ( unless VDE fixed this since 1989 ).
+
+5. Variable tabs ( sorry, only by inserting N spaces, not by
+displaying tabs as different numbers of spaces on the screen while 
+having tabs in the file -- next release, maybe ).
+
+6. "Word" commands can work in any of 4 ways, at your pleasure.
+There are 7 different "word" commands.
+
+7. Z80EMACS can remember one position in each window, and one 
+position in each file that's not shown on the screen.
+
+   In EMACS, we like to call this remembered position a "mark".
+   
+8. Lots of "region" commands: the area between the cursor and the 
+"mark" is called the "current region". There are currently only
+5 things you can do to the current region, but wait for next 
+release...
+
+   The emacs "region" concept is similar to the WordStar "block" 
+   concept. Each way of doing things has its own advantages and 
+   disadvantages.
+
+9. The emacs "keyboard macro": you tell Z80EMACS to start remembering
+what you type, do your normal editing commands, tell it to stop 
+remembering, and you can execute the same sequence again. Much better 
+than VDE macros. Z80EMACS saves its keyboard macro in a file, so you 
+can use it again tomorrow.
+
+10. When you try to exit, Z80EMACS asks for confirmation if any of 
+your files are modified -- and it's smart enough to keep its mouth shut
+if you already saved everything.
+
+11. Z80EMACS has 9 "Display Control" commands, to let you control 
+windows, a bunch of "session control" commands ( some are mistakenly 
+labeled as editing comands in ZMECMDS.LST, I'd say there are about 10
+session control commands in all ), to let you control the buffers and 
+the files in them, and more editing commands than you're likely to use.
+
+12. Z80EMACS lets you give parameters to the commands. The parameters 
+are numeric. For example, if you type ^U60+ at the start of a line,
+you get
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+( notice that even the printable characters are ordinary commands ).
+
+13. Source code for Z80EMACS is available. You should be able to find
+it in the same place you found the binaries.
+
+============================================================
+
+There are other advantages, but these are the most important.
+
+The rest of what I'm going to say is good news/bad news:
+
+Z80EMACS is a big program, and it uses overlays; that's bad if you use 
+floppies, good if you have a ramdisk. It's good in either case because
+it makes it easier to expand Z80EMACS; you could even add an overlay 
+without recompiling, using MAPKEYS.COM to get the new overlay invoked.
+
+Despite the overlays, performance is good; all the most-frequently-used 
+commands are in the same overlay, and the overlays are small, so they 
+don't take a lot of time to read in.
+
+Z80EMACS keeps all file data in memory, in linked lists of lines.
+
+"In memory" is faster than a temporary file, but limits the size; with
+my 60KB TPA, I can edit 22542 bytes in 824 lines of one file ( the
+same file I always use to test this after I've tried to improve these 
+figures ), or fewer bytes spread over more files. 
+
+   Of course, the size limit encourages modular programming...
+
+"Linked lists" are okay because most operations on the file use 
+sequential access. A pointer array would have plusses and minuses.
+
+If there is more than one window on the screen showing the same file 
+that you're typing in, and if you type at all quickly, you will lose 
+characters. This only happens if more than one window is showing the
+current buffer, which is an uncommon situation.
+
+Documentation could be better, but then, it could be worse.
+
+Ralph Betza, October 4, 1991
+
+

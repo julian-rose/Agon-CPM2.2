@@ -1,0 +1,498 @@
+This file describes all the commands available in Z80EMACS and
+also tells what the default bindings are.
+
+See "MAPKEYS.DOC" if you don't know what I mean by "bindings".
+
+111111111111111111111111111111111111111111111111111111111111
+1                                                          1
+1 ABOUT UECS                                               1
+1                                                          1
+111111111111111111111111111111111111111111111111111111111111
+
+All the commands have funny names. The funny names are based 
+on the UECS, or Universal Editor Command Set.
+
+The first part of each name classifies the command according to 
+"command-type", or category.
+
+These are the categories used in Z80EMACS:
+
+CI commands are "command input" commands. These commands make 
+your life easier when you are typing in editor commands.
+
+DC commands are "display control" commands; you use them to control 
+what's on your screen.
+
+EC commands are "editor command" commands; most commands are EC 
+commands.
+
+
+SC commands are "session control" commands. They are concerned with 
+managing the list of buffers.
+
+UI commands are "user interface" commands.
+
+BUGS:
+
+The categorization of the commands is not perfect.
+
+222222222222222222222222222222222222222222222222222222222222
+2                                                          2
+2 COMMAND REFERENCE:                                       2
+2                                                          2
+222222222222222222222222222222222222222222222222222222222222
+
+11	CI-Abort-Cancel
+
+This has a default binding of ^G, and can be rebound ( partially ).
+
+Abort-Cancel beeps the terminal; if a keyboard macro is being 
+recorded, it gets stopped; everything goes back to normal.
+
+On the message line ( when Z80EMACS asks you for a file ),
+Abort-Cancel aborts the command that asked; this usage of it can't
+be rebound.
+
+34	CI-Keyboard-Macro-Begin
+
+Keyboard-Macro-Begin, whose default binding is ^X(, tells z80emacs 
+to start remembering every keystroke you type.
+
+They will be written to a file named "KY+BD+MC.KBM", on the current 
+drive and user area.
+
+35	CI-Keyboard-Macro-End
+
+By default, ^X) == close the keyboard macro file, which thus becomes
+available for execution.
+
+36	CI-Keyboard-Macro-Execute
+
+By default, this is M-I ( the BACKTAB key on my terminal ).
+The traditional emacs binding for it is ^XE
+
+The file "KY+BD+MC.KBM" becomes the current source of command input.
+The keystrokes that were recorded are now replayed.
+If any of the commands make the terminal beep, execution stops.
+Any parameter to this command is ignored.
+The screen is updated as the stored commands are replayed.
+
+**	CI-Universal-Argument
+
+^U cannot be remapped. It is the emacs parameter introducer.
+Many Z80EMACS commands can use parameters. Most often the 
+parameter is a repetition count, e.g., "do this thing 6 times".
+Sometimes the parameter modifies the command behavior in other ways.
+
+Typing ^U gives you an argument of 4, but if you type in some 
+digits, they give the argument value; after that, typing ^U 
+again multiplies the current argument by 4.
+This is so confusing to explain... just try it out, and see.
+
+For example, to insert several A's at once:
+   ^UA     gives 4 of them
+   ^U2A    2 of them
+   ^U^UA   16
+   
+**     CI-Universal-Negative-Argument
+
+This is like ^U for starting arguments, but it starts with "-1"
+( minus-one ). Negative arguments often have special meanings.
+
+It is mapped as "^\" and can't be remapped.
+
+58	DC-Discard-Other-Window
+
+^X1 gets rid of all the windows on the screen except the current 
+one.
+
+59	DC-Enlarge-Window
+
+^Xz makes the current window larger, by taking lines away from its 
+neighbors.
+The parameter to this command controls how many lines bigger
+( or smaller, with a negative argument ) the window gets.
+
+63	DC-Reposit-Top
+
+This is M-! by default. It redisplays the window with the current 
+line at the top.
+With an argument, the current line becomes line N of the window.
+With a negative argument, the current line becomes the bottom 
+line of the window.
+
+64	DC-Scroll-Down
+
+^X^J moves all the text in the window down one line;
+the cursor stays on the same line of the file.
+The argument is a repetition count, negative scrolls up.
+
+67	DC-Scroll-Up
+
+^X^K; see description of DC-Scroll-Down.
+
+72	DC-Shrink-Window
+
+^XZ == see DC-Enlarge-Window
+
+73	DC-Split-Window
+
+^X2 makes two windows out of the current one, by spliting it in half.
+No arguments.
+
+79	EC-Arrow-Down
+
+Down-arrow is mapped as ^J AND as ^V because many ASCII terminals use 
+^V as their down-arrow key.
+Argument is repetition count, negative argument reverses the direction.
+FUNNY-ARROW: arrow down from the last line of the buffer
+goes to the first line of the buffer.
+
+80	EC-Arrow-Left
+
+^H is the default mapping.
+Argument is repetition count, negative argument reverses the direction.
+
+81	EC-Arrow-Right
+
+^L is the default mapping.
+Argument is repetition count, negative argument reverses the direction.
+
+82	EC-Arrow-Up
+
+^K is the default mapping.
+Argument is repetition count, negative argument reverses the direction.
+FUNNY-ARROW: arrow up from the first line of the buffer goes to the 
+last line; arrow up always goes one line more than specified.
+FUNNY-ARROW was a bug that I left in as an interesting feature;
+the actual implementation in Z80EMACS is not quite right, because
+if you SPECIFY an argument, arrow-up should move exactly that many 
+lines; it's only if you don't specify any argument that funny-arrow-up
+should move an extra line.
+
+91	EC-Back-Search-Simple
+
+^P prompts for a string, and then searches backwards in the buffer 
+for it. If you just hit return instead of entering a new string, 
+it searches for the last thing you searched for.
+
+Argument is ignored ( of course, negative SHOULD search forwards );
+no incremental search or regular expressions; there should be a
+"search-again" command, so you wouldn't have to hit RETURN at the 
+prompt.
+
+93	EC-CR-With-Indent
+
+^M ( carriage return ) inserts a new line, with indentation matching 
+the previous line, and goes to the start of it ( after the indentation ).
+Argument is repetition count, negative argument does nothing.
+
+95	EC-Capitalize-Region
+
+This is listed in ZMECMDS.LST, but there's no such thing.
+
+96	EC-Capitalize-Word
+
+M-c Goes Forward To The Start Of The Next Word, Makes The First Letter 
+Uppercase, And Skips Over The Rest Of The Word.
+Argument is repetition count, negative argument does nothing.
+A "word" is defined according to EC-Set-Word-Mode.
+
+98	EC-Deblank
+
+^X^O gets rid of blank lines around the cursor.
+
+103	EC-Exchange-Local-Mark
+
+^Z sets the "mark" at the cursor position and moves the cursor to where
+the "mark" used to be.
+The "mark" is a remembered cursor position, of which there's one per 
+window.
+
+106	EC-Execute-File
+
+Next release. This is like CI-Keyboard-Macro-Execute, except that 
+it asks you for a file name; thus, you can have lots of editor command 
+files around.
+
+107	EC-Exit
+
+^X^C ends the execution of Z80EMACS.
+Unless you give it an argument, it will check to see if any buffers 
+have been modified and not saved yet, and if so, it will ask you
+"Quit[Y/N]?". It won't ask you anything unless you might need to 
+save something.
+
+111	EC-Find-File
+
+^X^F is the command you use to edit files.
+It asks you for a file name, and then looks to see if the file is
+already in a buffer. If so, it just goes to that buffer; if not, 
+it makes a new buffer and reads in the file and goes to the
+new buffer.
+
+129	EC-Forward-Search-Simple
+
+^N == see EC-Back-Search-Simple
+
+142	EC-Goto-Beginning-Of-Line
+
+^@ ( 0x00 ) goes to the beginning of the current line, or
+with a negative parameter, it goes to the end of the line,
+or with a parameter it goes to column N of the current line.
+
+144	EC-Goto-End-of-Line
+
+^E goes to the end of the current line, or
+with a negative parameter, it goes to the start of the line.
+
+145	EC-Goto-First-Buffer-Line
+
+M-g actually goes to line N of the buffer, but with no argument
+it goes to the first line, of course. Negative arguments mean
+"go to N lines from end".
+
+150	EC-Goto-Last-Buffer-Line
+
+M-G; see EC-Goto-First-Buffer-Line
+
+161	EC-Goto-Next-Page
+
+^C pages forwards; it actually does this by going forwards as many 
+lines as there are lines in the window.
+Argument is repetition count, negative argument reverses the direction.
+
+166	EC-Goto-Next-Window
+
+^Xn is useful when you have more than one window on the screen.
+It moves down one window.
+It's wrongly listed as an EC command instead of as a DC command,
+because it may change the current buffer by doing so.
+
+180	EC-Goto-Previous-Page
+
+^R == see EC-Goto-Next-Page
+
+186	EC-Goto-Previous-Window
+
+^Xp == see EC-Goto-Next-Window
+
+192	EC-GrabFrom-Stack
+
+Well, Z80EMACS doesn't really have a stack, but only one "kill buffer".
+The "kill stack" contains a copy of deleted text.
+^Y ( "yank" ) inserts that deleted text into the buffer at the 
+cursor position.
+You can give it an argument, to get extra copies of the text.
+
+This very important command is used to undo mistakes, 
+to copy text, and to move text.
+
+204	EC-Kill-Lines-Count
+
+M-R deletes arg lines, starting with the cursor line.
+Negative argument just beeps.
+The silly binding of Meta-R is because that's what the "LINE DELETE"
+key on my trminal sends.
+
+208	EC-Kill-Region
+
+The "region" is the area enclosed by the cursor and the "mark".
+M-L deletes the region; you can get it back with EC-GrabFrom-Stack.
+Silly mapping, my terminal....
+
+209	EC-Kill-to-EOL-emacs
+
+M-T deletes the text up to the end of the line; if you're already at 
+the end of the line, it deletes the newline and joins the lines;
+with an argument of 0, it kills to start of line, with other 
+arguments it does what emacs users expect it to.
+   If you're not an emacs user, you don't want to know, and I
+   don't want to waste a thousand words on this.
+Silly mapping, my terminal....
+
+211	EC-Kill-Char-Back
+
+^? ( DEL ) deletes left by characters.
+Argument is repetition count, negative argument reverses the direction.
+
+212	EC-Kill-Char-Forw
+
+^D == see EC-Kill-Char-Back
+
+213	EC-Kill-Word-Back
+
+M-b deletes the word before the cursor.
+Argument is repetition count, negative argument does nothing.
+A "word" is defined according to EC-Set-Word-Mode.
+
+214	EC-Kill-Word-Forw
+
+M-f deletes the word after the cursor.
+Argument is repetition count, negative argument does nothing.
+A "word" is defined according to EC-Set-Word-Mode.
+
+219	EC-Lower-Case-Region
+
+^X^L turns all the caps in the region to lowercase.
+If you do it by accident, what a pain!
+
+220	EC-Lower-Case-Word
+
+M-_ ( Meta-underline ), lowercases the next word.
+
+224	EC-Open-Lines
+
+^O is like WordStar's ^N.
+Arg is repetition count.
+
+229	EC-PickUp-Region
+
+M-P is a shortcut for EC-Kill-Region followed by EC-GrabFrom-Stack.
+( The mapping is my "PRINT" key, M-p would be better. )
+
+235	EC-Quote-One
+
+M-Q is what you use to insert arg copies of a control character 
+into the file. ( or to insert a bunch of digits ).
+There is no special warning if you insert ^Z into a text file.
+
+236	EC-Read-File
+
+^X^R with no argument gets rid of the file that's currently in the 
+current buffer and then reads in a new one. ( You get prompted for 
+a filename ).
+With a negative argument, it reads the file in at the cursor position,
+which is "EC-Insert-File".
+
+238	EC-Redraw
+
+M-\ clears the screen and redraws, with the cursor line in
+the middle of its window. UNIX editors MUST HAVE this command,
+because other processes might send messages to the screen.
+The default mapping is sort of random...
+
+240	EC-Rename-Buffer
+
+^X^N changes the "buffer name". Each buffer has a buffer name and a
+file name. You can use ^X^N to make short names so that ^Xb is easier 
+to use.
+With a negative parameter, it changes the file name.
+
+244	EC-Save-File
+
+^X^S is the default. If your terminal uses xon-xoff, remap this!
+Z80EMACS creates a backup file, with the ".BAK" extension, whenever it
+saves or writes to an existing file.
+
+245	EC-Self-Insert
+
+The printable characters are all self-inserting characters 
+and can't be remapped. You could map other things to be 
+self-inserting, but why?
+The argument is a repetition count, and must be greater than zero.
+
+255	EC-Set-Local-Mark
+
+M-* tells Z80EMACS to remember the current cursor position.
+The silly mapping is because of my terminal...
+
+If you want to go to some other place in the file and then come back,
+use this command; use this command also for defining the "region"
+for the various commands that use it.
+
+258	EC-Set-Word-Mode
+
+M-W sets "Word" mode, as opposed to "word" mode.
+With a negative argument, it sets vi Word mode,
+as opposed to emacs Word mode.
+See also EC-Unset-Word-Mode, which is M-w
+
+Z80EMACS has four possible word mode settings ( vi or emacs, word 
+or Word ). The word mode affects ALL THE COMMANDS that have "Word" 
+in their names.
+
+It's quicker for you to try it out than for me to explain it.
+
+263	EC-TAB
+
+^I ( TAB ) normally inserts a tab into the buffer, or a number 
+of spaces if variable tab size has been set.
+With an argument, it sets the "variable tab size" instead; for example,
+^U^I says that from now on tabs will be expanded as spaces to fit 
+tabstops every 4 characters.
+An argument of 0 goes back to inserting real tabs, an argument of 1
+is the same as no argument at all.
+
+265	EC-Transpose-Chars
+
+M-~ transposes the two character to the left of the cursor.
+
+268	EC-Unset-Word-Mode
+
+M-w, see EC-Set-Word-Mode
+
+276	EC-Upper-Case-Region
+
+M-j ( my shift-up-arrow )
+
+277	EC-Upper-Case-Word
+
+M-^ ( escape carat )
+
+282	EC-Word-Back
+
+^B goes back a word, arg is repeat count, negative arg goes forwards.
+See "Word Mode".
+
+283	EC-Word-Forw
+
+^F goes forward a word. See EC-Word-Back.
+
+286	EC-Write-File
+
+^X^W gives the buffer a new filename and writes it out.
+
+487	SC-Discard-Buffer
+
+M-Y ( "PAGE ERASE" on my terminal ) asks for a buffer name and
+gets rid of the indicated buffer.
+Because the amount of memory available is limited, you may want to 
+get rid of buffers you no longer need.
+
+494	SC-SwitchTo-Buffer
+
+^Xb asks for a buffer name and goes to that buffer.
+
+495	SC-SwitchTo-Next-Sequential-Buffer
+
+^^ ( control-carat ) goes to the next buffer in Z80EMACS' internal
+list of all the existing buffers.
+Most of the time, you have only two or three active buffers, so 
+this is more convenient than ^Xb
+
+528	UI-Buffer-Selection-Menu
+
+^X^B makes a buffer named "[List]", fills it with a nice-looking 
+list of the active buffers, and goes to it.
+
+Unfortunately, you can't do anything with this menu; when you're 
+in the [List] buffer, you should be able to 
+1) go to the buffer indicated by the cursor line,
+2) discard the indicated buffer,
+3) re-order the list,
+4) save the file in the indicated buffer,
+5) rename file or buffer.
+
+543	UI-Give-Statistics
+
+^X= puts out a message on the message line that tells you
+a useless X and Y, the hex value of the character under the cursor,
+and the cursor position within the file.
+
+999	Undefined-Function
+
+This isn't really an editor command. It's defined so that MAPKEYS.COM 
+can UNMAP some keys.
+
+

@@ -1,0 +1,48 @@
+This is the "read me first" file for the Z80EMACS binary distribution.
+It is in ZMAX-B01.LZR;
+The source is in ZMAX-S01.LZR
+so you can see this is release 0.1!
+
+Documentation:
+Z80EMACS.DOC       general intro
+POSTING.0          slightly obsolete intro, as posted to internet network news.
+Z80EMACS.REF       command reference
+MAPKEYS.DOC        keyboard customization
+METERM.DOC         screen customization
+
+Installation:
+0. Uncrunch the two overlay files that were crunched.
+   LU310: error reading unwritten data....
+1. Read Z80EMACS.DOC
+2. Read METERM.DOC, and customize ME.COM to fit your terminal.
+3. If you are familiar with any kind of emacs, just print MAPPING.TXT 
+   as a quick reference. Otherwise, better take a peek at
+   Z80EMACS.REF ( skim through it ).
+4. Try it out.
+5. If you don't like the way the keystrokes fit the commands,
+   read MAPKEYS.DOC and do what you need to do.
+6. Enjoy.
+   Z80EMACS can find its overlays if they are on the current drive, 
+   or on drive A:, B:, or C: ( your BDOS may extend this ).
+   Even if you don't have a hard drive, performance is good.
+   I tested this distribution file...
+
+Other files:
+BINDIST.SUB        used to create the binary distribution library.
+ME.COM             The Z80EMACS program
+*.OVR              Z80EMACS overlays
+MAPKEYS.COM        keyboard customization
+MECONFIG.COM       keyboard customization
+METERM.COM         screen customization
+TELANSI.C          In case you need to patch
+TELANSI.O          ditto
+ME.SYM             used for both customization programs
+MAPPING.TXT        quick reference
+ZMECMDS.LST        data file for MAPKEYS.COM, do not clobber!
+ME.RSM             I don't think you need it.
+;                  but with it, you could ( if you wanted ) create new
+;                  overlays without even having Z80EMACS source...
+POSTING.0          part 0 of internet source posting.
+
+
+
