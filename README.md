@@ -12,6 +12,7 @@ Disk images I have uploaded as of this writing:<br>
   <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R only 8-)</br>
                  See also bdsc-c, the richer set of files from BDS C disk, made by Nihirash</li>
   <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
+  <li>emacs-e:     Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
   <li>nevadit-n:   Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
   <li>pmarc-p:     PMARC archiver for uncompressing PMA archive files. Could be added to startkit, but from a different source.</li>
   <li>startkit-e:  Utilities to uncompress archive files; CP/M software was often compressed for exchange on bullet-in boards</li>
