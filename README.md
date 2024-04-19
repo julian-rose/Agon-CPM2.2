@@ -9,8 +9,11 @@ Disk images I have uploaded as of this writing:<br>
 <ul>
   <li>adventure-J:   Scott Adam's adventure games, and a version of startrek.bas edited for the Exidy Sorcerer.</li>
   <li>bbc-basic3-i:  R. T. Russell's original BBC BASIC 3.0 (you will need to run CONVERT.COM on .bas files to create .bbc files)</li>
-  <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R only 8-)</br>
-                 See also bdsc-c, the richer set of files from BDS C disk, made by Nihirash</li>
+  <li>bdsc-red-i:    RED editor that comes bundled with BDS C 1.6, configured for Agon.<br>
+                  Interesting because, suitably configured and linked, this may interwork with BDSC.
+                  </li>
+  <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R)</br>
+                 Added du2c, a utility what i wrote and ported from cygwin to CP/M to add EOF characters.</li>
   <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
   <li>emacs-e:     Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
   <li>nevadit-n:   Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
