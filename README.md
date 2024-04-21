@@ -7,26 +7,37 @@ You can get all the content from there, or you can take each disk image individu
 
 Disk images I have uploaded as of this writing:<br>
 <ul>
-  <li>adventure-J:   Scott Adam's adventure games, and a version of startrek.bas edited for the Exidy Sorcerer.</li>
-  <li>bbc-basic3-i:  R. T. Russell's original BBC BASIC 3.0 (you will need to run CONVERT.COM on .bas files to create .bbc files)</li>
+  <li>adventure-J:   Scott Adam's adventure games, and a version of startrek.bas edited for the Exidy 
+                     Sorcerer.</li>
+  <li>bbc-basic3-i:  R. T. Russell's original BBC BASIC 3.0 (you will need to run CONVERT.COM on .bas 
+                     files to create .bbc files)</li>
+  <li>bdsc-cdb-d:    CDB, an interactive symbolic breakpointing debugger for BDS C 1.6, configured for
+                     Agon.</li>
   <li>bdsc-red-i:    RED editor that comes bundled with BDS C 1.6, configured for Agon.<br>
-                  Interesting because, suitably configured and linked, this may interwork with BDSC.
-                  </li>
-  <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler (K&R)</br>
-                 Added du2c, a utility what i wrote and ported from cygwin to CP/M to add EOF characters.</li>
-  <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in the late 70s</li>
-  <li>emacs-e:     Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
-  <li>nevadit-n:   Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
-  <li>pmarc-p:     PMARC archiver for uncompressing PMA archive files. Could be added to startkit, but from a different source.</li>
-  <li>startkit-e:  Utilities to uncompress archive files; CP/M software was often compressed for exchange on bullet-in boards</li>
-  <li>vedit-m:     V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a rich command mode. Patched for Agon.</li>
-  <li>wordmaster-e: MicroPro Word Master text editor with video, command and insert modes. Patched for Agon.</li>
-  <li>ZDE-e:       ZDE programmers editor for CP/M-80. Not the vi editor I was looking for, but a simple programmers editor. Uses a small number of wordstary / emacsy commands. 
+                     Interesting because, suitably configured and linked, this may interwork with BDSC compilation error reporting.
+                     </li>
+  <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler 
+                     (K&R)</br>
+                     Added du2c, a utility to add a CP/M EOF character to the end of files, enabling them to be properly read by various editors and tools. Interesting in its own right to see the port from cygwin (gnu) to CP/M (bdsc).</li>
+  <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in
+                     the late 70s</li>
+  <li>emacs-e:       Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
+  <li>nevadit-n:     Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
+  <li>pmarc-p:       PMARC archiver for uncompressing PMA archive files. Could be added to startkit, 
+                     but from a different source.</li>
+  <li>startkit-e:    Utilities to uncompress archive files; CP/M software was often compressed for 
+                     exchange on bullet-in boards</li>
+  <li>vedit-m:       V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a 
+                     rich command mode. Patched for Agon.</li>
+  <li>wordmaster-e:  MicroPro Word Master text editor with video, command and insert modes. Patched 
+                     for Agon.</li>
+  <li>ZDE-e:         ZDE programmers editor for CP/M-80. Not the vi editor I was looking for, but a 
+                     simple programmers editor. Uses a small number of wordstary / emacsy commands. 
 </ul>
 
 Things I have changed on Nihirash's disk images:<br>
 <ul>
-  <li>cpm+util-a:  Added ZSID, the later Digital Research Symbolic Debugger for Z80.</li>
+  <li>cpm+util-a:    Added ZSID, the later Digital Research Symbolic Debugger for Z80.</li>
 </ul>
 
 On the SD-card each disk image is given a unique drive letter, in the range cpma..cpmp<br>

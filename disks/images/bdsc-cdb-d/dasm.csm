@@ -1,0 +1,65 @@
+;  C Debuger assembler routines
+
+RstNum	equ	6		; RST 6 is used
+
+; 	resumeit ( old_sp )
+
+	FUNCTION RESUMEIT
+	pop	h		; discard return address in cdb2
+	pop	h		; get argument = old_sp
+	sphl
+	pop	psw		; restore registers from *old_sp
+	pop	b
+	pop	d
+	pop	h
+	ret			; and resume target program
+
+	ENDFUNC
+
+
+;	initrst ( debug_stack )
+
+	FUNCTION INITRST
+	EXTERNAL ATBREAK
+
+dbgstack equ	0
+
+	pop	d		; return address
+	pop	h		; debug_stack
+	push	h
+	push	d
+	shld    Rna+1		; patch into the lxi sp
+	lxi	h,Rn		; get address of Rn 
+	shld	8*RstNum+1  	;	patch a jmp Rn at rst location
+	mvi	a,0c3h
+	sta     8*RstNum
+	ret
+
+;  come here on restart
+
+Rn	push	h		;	save registers on target stack
+	push	d
+	push	b
+	push	psw
+	lxi	h,0
+	dad	sp		;       target stack pointer to hl
+Rna	lxi	sp,dbgstack	;       cdb2 stackpointer loaded
+	push	h
+	CALL    ATBREAK		;	atbreak(target_sp);
+					;	[ will not return ]
+	ENDFUNC
+
+
+;	atret ()
+
+	FUNCTION ATRET
+	EXTERNAL ATRETURN
+
+        push	h		; pass fn value
+        CALL    ATRETURN	; atreturn(fn_value);
+				; on return, h = return addr, tos = fn value
+	xthl			; h = fn value, tos = return addr
+	ret
+
+	ENDFUNC
+

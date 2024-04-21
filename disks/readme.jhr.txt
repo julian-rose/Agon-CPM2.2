@@ -23,7 +23,7 @@ where 308k is the product of diskdefs cda1 seclen * tracks * sectrk.
 Then format the disk:
 	mkfs.cpm -fcpt1 sorcerer.dsk
 This reads the cpt1 configuration data from diskdefs to format a blank disk (which serves as a template in ./build.sh).
-To include the cpm/m bootable files use the -b option to name them.
+To include the cp/m bootable files use the -b option to name them.
 As yet I cannot find Sorcerer cp/m binaries to use with -b.
 
 [I copied the first blocks from C:\Users\jrose\tech_stuff\retro\Exidy\disks\liaquay exidy-sorcerer\CPMdisk1\CPMdisk1.raw to create sorcercpm.dsk. That should be bootable on the Sorcerer, but won't work with the emulator - see C:\Users\jrose\tech_stuff\retro\Exidy\disks\liaquay exidy-sorcerer\README.1st]

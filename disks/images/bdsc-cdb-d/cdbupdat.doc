@@ -1,0 +1,122 @@
+
+Updates and corrections to CDB debugger.
+
+30 August 1986
+
+Version 1.60
+
+1.  The cdb source files have been updated to BDS C version 1.60.  The primary
+changes are those necessitated by changes to the library routines.
+
+2.  A new configuration program, cdbconfg, has been added to the package.  It is
+distributed in both source code and executable form.  To configure cdb 
+for a particular system (that is, to adjust the #defines in the CDB.H file 
+to fit the BDOS location of a particular system and to compile and link
+CDB.COM and CDB2.OVL) all you have to do is type "cdbconfig" and then 
+"submit makecdb".
+
+
+29 December 1983
+
+Revisions, v1.21 to v1.22
+
+1.  L2 has been updated to v2.2.5.  A new option, "-Z", has been added which
+does the same thing the "-Z" option to CLINK does--cause the .COM file produced
+by the linker not to initialize all global (external) variables to zero.
+
+2.  The "-K" option has been added to the debugger, along with a corresponding
+#defined constant in CDB.H called KBINT_DEF.  Normally, the debugger 
+recognizes a "keyboard interrupt" whenever the user types any key while the
+target program is running; this interrupt causes the debugger to stop the
+target program at the begining of the next C statement encountered.  The
+ability to stop execution in this manner can be quite useful, but has one
+enormous disadvantage--any program that allows the user to type while the
+program is running and then retrieves the typed character at a later time will
+not work properly with the debugger.  The best example of such a program is
+TELED, the modem protocol program distributed with BDS C.  
+
+The "-K" option to CDB allows the user to disable the keyboard polling feature 
+of CDB when the user so desires.
+
+3 March 1983--v1.21
+
+Revisions, v1.20 to v1.21
+
+1.  The "-D" option to CDB has been corrected to accept a user number without a
+drive designator (just a "10/", for example).  In addition, the user can now
+enter a colon after the drive designator without confusing CDB.  Thus, the new
+syntax for the option is
+	-d [nn/][d[:]]
+
+2.  L2 has been updated to v2.2.4.  A new option, "-N", has been added which
+does the same thing the "-N" option to CLINK does--cause the .COM file produced
+not to execute a CP/M warm boot at the end of execution.
+
+3.  The "-NS" option of L2 has been removed and the "-S" option changed.  
+Now the default is NO system library files (see CDB docs for explanation of 
+system library files); system library functions made it impossible to set
+a breakpoint at the return of library functions in certain instances.
+
+4.  CDB now handles the "-L" and "-G" options correctly when followed by the
+"%" option.  v1.20 thought that "% target args" in
+	cdb targ -l targ lib % target args
+was a local symbol (.CDB) file.
+
+5.  Updates to the functions in PARSE.C and PRINT.C to handle two dimensional 
+arrays which are the formal parameters to functions.
+
+
+2 January 1983--v1.20
+
+Miscellaneous documentation updates:
+
+1.  It is vital that CDB.COM, CDB2.OVL, and the target .COM file all
+be linked using the same C.CCC and DEFF*.CRL libraries.  The need arises
+because CDB2.OVL uses the C.CCC runtime package of CDB.COM when CDB2 
+initializes itself, and then uses the runtimes from the target once the
+target is swapped in.
+
+2.  The correct "-e" option for compiling L2.C (see "Constructing L2" in the
+v1.1 documentation) has been changed.  See revision 4 below.
+
+3.  The v1.1 documentation ("Where to put CDB2" in part K.1) has an obviously
+incorrect method for finding the location of a system's BDOS.  One way to find
+the necessary address is to run the following brief program:
+
+	main() {
+		printf(" %02x%02x\n",peek(0x0007),peek(0x0006));
+	}
+
+4.  The v1.1 documentation has a bug in the "Summary" section of part K.3.
+The last sentence of the last paragraph of the section is wrong; only the global
+symbols from FOO.CDB will be loaded.  To access the locals in FOO, the correct
+command line is:
+
+	cdb foo -l foo bar lib
+
+
+
+Revisions, v1.2 to v1.20
+
+1. Some messages have been changed slightly.
+
+2. CDB2 now detects if there is no target stack space (or if target program 
+overlapping CDB2).
+
+3. CDB now handles user numbers under the "-D" option.
+
+4. L2 updated to version 2.2.3, and now supports the "-i" (incomplete command 
+line) option.  This option is described below; see L2.C for details.
+Note:  to compile L2.C, use -e4e00 (if L2 will be linked with CLINK) or
+-e4b00 (if new L2 will be linked with an old version of L2).
+
+	-I 	Specifies that the command line entered is "Incomplete"; this 
+		option causes L2 to prompt the user to enter more command line
+	        arguments.  Each line entered by the user may end with another
+	        "-i", in which case the user will again be prompted for more 
+		options.  Note:  the "-i" option must be the LAST option on 
+		the command line to work.
+
+
+
+
