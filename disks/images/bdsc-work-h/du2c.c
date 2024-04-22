@@ -13,13 +13,21 @@
  *               and to stepwise debug
  *          gdb du2c.exe
  *
- *               or on CP/M BDSC compiler
+ *               for CP/M BDSC compiler (and for zsid debugging)
  *          cc du2c -o
  *          cc chario -o
  *          clink du2c chario -s -n -w -e <ldata>   e.g. ldata=2400
- *
- *               and to interactively ebug on CP/M
+ *               and to interactively debug on CP/M
  *          a:zsid du2c.com du2c.sym
+ *
+ *               for debugging with CDB on CP/M BDSC
+ *          cc du2c -k
+ *          cc chario -k
+ *          l2 -d du2c chario -wa
+ *               and to interactively debug with CDB
+ *          d:cdb du2c -d d: % hello.c hello.c2
+ *               (the '-d d:' parameter identifies the drive where cdb2.ovl is
+ *                the % parameter halts options and starts program arguments)
  *
  * Version: 2024.apr.15 jhr, started, running on cygwin in a few hours
  *          2024.apr.19 jhr, got working on Agon CP/M
@@ -28,6 +36,9 @@
  *                             this program...
  *                            CP/M is set up for write() sector-sized chunks
  *                             so we use chario supplied with BDSC
+ *          2024,apr.22 jhr, remove local function declarations to work around
+ *                           compiler '-k' local symbol table construction for 
+ *                           CDB. See readme.jhr
  *****************************************************************************/
 
 /*** DEFINITIONS ***/
@@ -102,12 +113,16 @@ STATIC char outfile[ MAX_FILE_NAME_LEN ];
 STATIC _Bool verbose;
 
 
-/*** GLOBAL FUNCTIONS ***/
+/*** LOCAL FUNCTIONS ***/
+  /* with -k (debug option) on BDSC CP/M, do not declare local functions */
+#ifdef __CYGWIN__
 STATIC RESULT getargs( int CONST, char CONST * CONST * );
 STATIC void usage( char CONST * );
 STATIC int lstrncpy( char * CONST, char CONST *, int CONST );
 STATIC RESULT genout( void );
+#endif
 #ifndef __CYGWIN__
+#if 0 /* with -k (debug option) on BDSC CP/M, do not declare local functions */
     STATIC int lmemset( char * CONST, int CONST, int CONST );
 
     /* i/o buffer (from bdsc/chario.c) */
@@ -115,6 +130,7 @@ STATIC RESULT genout( void );
     int cread( struct iobuf*, char*, unsigned int );
     int cwrite( struct iobuf*, char*, unsigned int );
     int cclose( struct iobuf* );
+#endif
 #endif
 
 STATIC RESULT getargs( argc, argv )
@@ -530,4 +546,3 @@ int main( argc, argv )
     return( ret );
 }
 
-

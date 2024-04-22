@@ -153,3 +153,17 @@ CDB2ADDR (8E00), to give 0x4900 + 0x8E00 = 0xD700.
 
 You should end up with an executable program, CDB.COM
 I have built and included a configured copy called CDB-AGON.COM
+I preserved the original executable in CDB-D000.COM
+
+
+Running
+-------
+Refer to the BDS C User Guide sections 6.4 through 6.6
+
+Undocumented features
+---------------------
+To have visibility of function local variables and arguments, do not declare
+the function prototypes in the source file. If you do that, the symbol table 
+information is built from those prototypes instead of the actual function 
+definitions. This is a bug in the compiler. The symptom is you will only
+see locals and arguments in main.
