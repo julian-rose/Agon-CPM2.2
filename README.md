@@ -3,22 +3,22 @@
 A fork of Nihirash's Agon-CPM2.2 project, with more CP/M disk images.<p>
 
 You will find new disk images in the playpen branch.<br>
-You can get all the content from there, or you can take each disk image individually.<p>
+You can get the whole content, or you can take each disk image individually.<p>
 
-Disk images I have uploaded as of this writing:<br>
+Uploaded disk images:<br>
 <ul>
   <li>adventure-J:   Scott Adam's adventure games, and a version of startrek.bas edited for the Exidy 
                      Sorcerer.</li>
   <li>bbc-basic3-i:  R. T. Russell's original BBC BASIC 3.0 (you will need to run CONVERT.COM on .bas 
                      files to create .bbc files)</li>
   <li>bdsc-cdb-d:    CDB, an interactive symbolic breakpointing debugger for BDS C 1.6, configured for
-                     Agon.</li>
-  <li>bdsc-red-i:    RED editor that comes bundled with BDS C 1.6, configured for Agon.<br>
-                     Interesting because, suitably configured and linked, this may interwork with BDSC compilation error reporting.
-                     </li>
+                     Agon. See also bdsc-work-h du2c.c as a demo with CDB.</li>
+  <li>bdsc-red-i:    RED editor bundled with BDS C 1.6, configured for Agon.<br>
+                     Interesting because, suitably configured and linked, this may interwork with BDSC compilation error reporting.</li>
   <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler 
                      (K&R)</br>
-                     Added du2c, a utility to add a CP/M EOF character to the end of files, enabling them to be properly read by various editors and tools. Interesting in its own right to see the port from cygwin (gnu) to CP/M (bdsc).</li>
+                     Includes du2c.c, a utility to add a CP/M EOF character to the end of files, enabling them to be properly read by various editors and tools. Interesting in its own right to see the port from cygwin (gnu) to CP/M (bdsc). Also edited to
+                     work with CDB.</li>
   <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in
                      the late 70s</li>
   <li>emacs-e:       Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
