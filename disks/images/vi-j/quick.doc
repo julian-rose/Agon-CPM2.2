@@ -1,0 +1,18 @@
+CURSOR MOVEMENT              | INSERTING AND DELETING      | DISPLAY
+h/j/k/l  left/down/up/right  | a/itext<ESC> append/insert  | ^F  next page
+0/^/$    first/left/last col | A/Itext<ESC> ins. at EOL/BOL| ^B  prev. page
+w/b/e    word fwd/back/end   | otext<ESC>   open new line  | ^L  redisplay
+#G/G     go to line/bottom   | rchar        replace char   | ^G  status line
+H/L      top/bottom of screen| J            join lines     | z   move to top
+/text<CR>  search            | x/X          del char (left)|------------------
+/<CR>      search next       | dmotion      delete block   | FILES
+n/N        search next/prev. | dd           delete line    | :w   save file
+?text<CR>  search backward   | D            delete to EOL  | :W   write block
+?<CR>      search prev. back.| ymotion      copy block     | :r   insert file
+'m       go to marked line   | yy           copy line      | :q   quit
+`m       go to marker        | p/P          paste (before) | :q!  abandon
+mm       set marker          | f/t<char>    go (on)to char |
+------------------------------------------------------------------------------
+SEARCH/REPLACE                               | CHANGING
+:%old<CR>new<CR>  replace each OLD with NEW  | cmotion text<ESC>  change block
+:sold<CR>new<CR>  repl. between cursor&marker| Ctext<ESC>      =  c$text<ESC>

@@ -167,3 +167,9 @@ the function prototypes in the source file. If you do that, the symbol table
 information is built from those prototypes instead of the actual function 
 definitions. This is a bug in the compiler. The symptom is you will only
 see locals and arguments in main.
+
+Remember after you finish debugging a program, to recompile it without -k and
+relink it; this removes the debug information (and insertion of rst calls).
+If you try to run a debug-build program from CP/M, rather than from CDB, it
+will lock up.
+

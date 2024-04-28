@@ -2,40 +2,56 @@
 
 A fork of Nihirash's Agon-CPM2.2 project, with more CP/M disk images.<p>
 
-You will find new disk images in the playpen branch.<br>
-You can get the whole content, or you can take each disk image individually.<p>
+Disk images in the playpen branch should be considered under evaluation, for potential inclusion in the main branch.<br>
+You can get all the images as a whole, or you can take each disk image individually.<p>
 
-Uploaded disk images:<br>
+Games:<br>
 <ul>
   <li>adventure-J:   Scott Adam's adventure games, and a version of startrek.bas edited for the Exidy 
                      Sorcerer.</li>
+  <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in
+                     the late 70s</li>
+</ul>
+
+Editors:
+<ul>
+  <li>bdsc-red-i:    RED editor bundled with BDS C 1.6, configured for Agon.<br>
+                     Interesting because, suitably configured and linked, this may interwork with BDSC compilation error reporting.</li>
+  <li>emacs-e:       Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
+  <li>nevadit-n:     Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
+  <li>vedit-m:       V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a 
+                     rich command mode. Patched for Agon.</li>
+  <li>vi-j:          VE (Vi-like Editor) version 14; a minimal version of VI, patched for Agon. 
+                     Written using the T3X progamming language. See the readme for more.</li>
+  <li>wordmaster-e:  MicroPro Word Master text editor with video, command and insert modes. Patched 
+                     for Agon. Interesting as it predates Wordstar.</li>
+  <li>ZDE-e:         ZDE programmers editor for CP/M-80; a simple programmers editor. 
+                     Uses a small number of wordstary / emacsy commands. 
+</ul>
+
+Programming:
+<ul>
   <li>bbc-basic3-i:  R. T. Russell's original BBC BASIC 3.0 (you will need to run CONVERT.COM on .bas 
                      files to create .bbc files)</li>
   <li>bdsc-cdb-d:    CDB, an interactive symbolic breakpointing debugger for BDS C 1.6, configured for
                      Agon. See also bdsc-work-h du2c.c as a demo with CDB.</li>
-  <li>bdsc-red-i:    RED editor bundled with BDS C 1.6, configured for Agon.<br>
-                     Interesting because, suitably configured and linked, this may interwork with BDSC compilation error reporting.</li>
   <li>bdsc-work-h:   The minimal set of files (to do hello world) with Leor Zolman's BDS C compiler 
                      (K&R)</br>
-                     Includes du2c.c, a utility to add a CP/M EOF character to the end of files, enabling them to be properly read by various editors and tools. Interesting in its own right to see the port from cygwin (gnu) to CP/M (bdsc). Also edited to
-                     work with CDB.</li>
-  <li>creative-computing-games-g:  Dave Ahl's 101 BASIC games published by Creative Computing back in
-                     the late 70s</li>
-  <li>emacs-e:       Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
-  <li>nevadit-n:     Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
+                     Includes du2c.c, a utility to add a CP/M EOF character to the end of files, 
+                     enabling them to be properly read by various editors and tools. 
+                     Interesting in its own right to see the port from cygwin (gnu) to CP/M (bdsc). 
+                     Edited to work with CDB.</li>
+</ul>
+
+Utilities:
+<ul>
   <li>pmarc-p:       PMARC archiver for uncompressing PMA archive files. Could be added to startkit, 
                      but from a different source.</li>
   <li>startkit-e:    Utilities to uncompress archive files; CP/M software was often compressed for 
                      exchange on bullet-in boards</li>
-  <li>vedit-m:       V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a 
-                     rich command mode. Patched for Agon.</li>
-  <li>wordmaster-e:  MicroPro Word Master text editor with video, command and insert modes. Patched 
-                     for Agon.</li>
-  <li>ZDE-e:         ZDE programmers editor for CP/M-80. Not the vi editor I was looking for, but a 
-                     simple programmers editor. Uses a small number of wordstary / emacsy commands. 
 </ul>
 
-Things I have changed on Nihirash's disk images:<br>
+Updates to Nihirash's disk images:<br>
 <ul>
   <li>cpm+util-a:    Added ZSID, the later Digital Research Symbolic Debugger for Z80.</li>
 </ul>

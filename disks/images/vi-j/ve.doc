@@ -1,0 +1,171 @@
+
+	VE - A VISUAL EDITOR FOR CP/M
+	Nils M Holm, 2020
+	In the public domain
+
+	VE is a simple full screen editor that implements a small,
+	but hopefully useful subset of the Unix editor VI.
+
+
+	WARNING
+
+	VE is work in progress, so do make backup copies of your files
+	before editing them with VE!
+
+
+	REQUIREMENTS
+
+	VE requires a VT52-compatible terminal or emulation and at least
+	a 4Mhz CPU. It will also run on 2MHz CPUs, but it will not be
+	much fun. This version is hardwired to use 48KB of TPA, but this
+	may be changed by adjusting the SIZE constant in the source code.
+	SIZE=27000 is for 48KB TPA. SIZE specifies the size of the text
+	buffer.
+
+	VE8 is a version of VE that is patched to run on the LCD console
+	of the Amstrad NC100 (basically a VT52 terminal with 8 lines).
+
+
+	STARTING
+
+	The VE editor must be given a file name when started. An
+	existing file will be loaded into the buffer, a new file
+	will be created silently.
+
+
+	CURSOR MOVEMENT
+
+	h   move the cursor left one character (also ^H)
+	j   move the cursor down one line (also ^J, <CR>, ^N, +)
+	k   move the cursor up one line (also ^P, -)
+	l   move the cursor right one character (also <space>)
+	
+	0   move to first column
+	^   move to first non-blank column
+	$   move to end of line
+
+	w   move to beginning of next word (also W)
+	b   move to beginning of previous word (also B)
+	e   move to end of this word (next, if already at end, also E)
+	
+	#G  move to line number #
+	G   move to end of file
+	
+	H   move to top of screen
+	L   move to bottom of screen
+
+	/<text><CR>  move to next occurrence of <text>
+	/<CR>        move to next occurrence of previously searched text
+	n            same as /<CR>
+
+	?<text><CR>  move to previous occurrence of <text>
+	?<CR>        move to prev. occurrence of previously searched text
+	N            same as ?<CR>
+
+	'm  go to line containing marker
+	`m  go to marker
+
+
+	COMMANDS
+
+	^F  display next page of text
+	^B  display previous page of text
+	^L  clear screen and redisplay current page (also ^R)
+
+	^G  display info: chars, lines, current line, file name,
+	    and modified flag (*)
+
+	i<text><ESC>   insert text at cursor position
+	I<text><ESC>   insert text at beginning of line
+
+	a<text><ESC>   append text at cursor position
+	A<text><ESC>   append text at end of line
+
+	o<text><ESC>   open fresh line below and insert text
+
+	c<motion><text><ESC>  change text between cursor and end point
+	                      of <motion>
+	C<text><ESC>          change to end of line
+
+	r<char>  replace char at cursor with <char>; when entering a
+	         return character, split the line
+
+	d<motion>  delete text between cursor and end point of <motion>
+	dd         delete current line
+	D          delete to end of line
+
+	y<motion>  yank (copy) text between cursor and end pt of <motion>
+	yy         yank (copy) current line
+
+	p   paste deleted/copied text after cursor
+	P   paste deleted/copied text at/before cursor
+
+	J   join current line and next line
+
+	x   delete character at cursor
+	X   delete character before cursor
+	
+	mm  set marker at cursor position
+
+	z   move current line to top of screen
+
+
+	COLON COMMANDS
+
+	:w  write file
+
+	:W<file><CR>   write text bewteen cursor and mark to <file>
+	:r<file><CR>   insert file at cursor position
+
+	:%<old><CR><new><CR>  search string <old> and replace with
+	                      <new> in the entire text
+
+	:s<old><CR><new><CR>  like %s, but only search and replace
+			      between cursor and marker
+
+	:q  quit; if text is modified, pressing <!> will quit anyway
+
+
+	LINE EDITING
+
+	Input mode can be terminated without any action by pressing
+	^C. The input buffer can be erased by pressing ^U. ^H will
+	remove the most recently input character.
+
+	This works in insert mode as well as when entering text at
+	the command line. In insert mode, ^C will only discard the
+	most recently entered line.
+
+
+	FEATURES
+
+	The editor runs in slowopen mode, so it works pretty well over
+	slow serial lines. In slowopen mode, the text display is not be
+	updated while entering text, so characters you enter will seem
+	to replace existing characters. This is not what really happens,
+	though! The display will be updated as soon as you press <ESC>.
+
+	Text is converted to Unix format internally, which simplifies
+	the code and squeezes out one byte of text per line. (Does not
+	sound much, but this is one KB per 1000 lines!) This does slow
+	down file I/O a bit, though. Text is saved in the usual CP/M
+	format.
+
+
+	BUGS AND LIMITATIONS
+
+	* Lines will only be displayed up to the width of the screen.
+	  Parts of lines that extend beyond the end of the screen cannot
+	  be edited. (You can split, edit, and join the line, though.)
+
+	* The w/b/e commands actually behave like W/B/E, i.e. words are
+	  delimited by blanks.
+
+	* N always searches backward, n always searches forward. (You
+	  might consider this to be a feature.)
+
+	* Tab (HT) characters expand to 8 spaces during input. They
+	  will expand to the next tab stop after leaving insert mode.
+
+	* Screen redrawing could be optimized a bit more.
+
