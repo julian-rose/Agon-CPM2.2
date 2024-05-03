@@ -118,6 +118,7 @@ reset() do
 	Rdonly := 0;
 end
 
+!jhr, debug support
 var jjj;
 var jjjj;
 !jhr for debugging
@@ -135,6 +136,7 @@ post(s) do
 	Msg := s;
 end
 
+!jhr, debug support
 postnum(n) do var i;
 	tty.writec(' ');
 	if( 0 > n ) tty.writes(" MINUS ");
@@ -151,6 +153,7 @@ postnum(n) do var i;
         tty.writec(' ');
 end
 
+!jhr, debug support
 postd(s) do
 	post(s);
 	delay();
@@ -1098,8 +1101,9 @@ postd("jhr done displine");
 	return 0;	!jhr
 end
 
-lnadjust()
-	if (Linemo) do var p;
+
+lnadjust() do var p;     ! jhr, Nils Nolm, try declaring var p here
+	if (Linemo)          ! rather than here
 		p := Point;
 		moveto(Block);
 		Block := Line;
@@ -1108,6 +1112,7 @@ lnadjust()
 		Eblock := Line;
 		moveto(p);
 	end
+end
 
 motion(cm, k) do var p, r;
 	Linemo := 0;
@@ -1468,6 +1473,3 @@ do
 end
 
 
-		tty.writes("Missing file name\r\n");
-		tty.fini();
-	
