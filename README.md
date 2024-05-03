@@ -15,11 +15,11 @@ Games:<br>
 
 Editors:
 <ul>
-  <li>bdsc-red-i:    RED editor bundled with BDS C 1.6, configured for Agon.<br>
+  <li>bdsc-red-e:    RED editor bundled with BDS C 1.6, configured for Agon.<br>
                      Interesting because, suitably configured and linked, this may interwork with BDSC compilation error reporting.</li>
   <li>emacs-e:       Micro Emacs 3.6 for CP/M-80. Patched for Agon.</li>
-  <li>nevadit-n:     Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
-  <li>vedit-m:       V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a 
+  <li>nevadit-e:     Nevada Edit 3.0, a programmer's editor. Patched for Agon.</li>
+  <li>vedit-e:       V-Edit Plus 2.33, a programmer's editor with a simple visual editing mode, and a 
                      rich command mode. Patched for Agon.</li>
   <li>vi-j:          VE (Vi-like Editor) version 14; a minimal version of VI, patched for Agon. 
                      Written using the T3X progamming language. See the readme for more.</li>
@@ -45,9 +45,9 @@ Programming:
 
 Utilities:
 <ul>
-  <li>pmarc-p:       PMARC archiver for uncompressing PMA archive files. Could be added to startkit, 
+  <li>pmarc-n:       PMARC archiver for uncompressing PMA archive files. Could be added to startkit, 
                      but from a different source.</li>
-  <li>startkit-e:    Utilities to uncompress archive files; CP/M software was often compressed for 
+  <li>startkit-n:    Utilities to uncompress archive files; CP/M software was often compressed for 
                      exchange on bullet-in boards</li>
 </ul>
 
