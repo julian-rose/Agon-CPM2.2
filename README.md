@@ -49,6 +49,9 @@ Utilities:
                      but from a different source.</li>
   <li>startkit-n:    Utilities to uncompress archive files; CP/M software was often compressed for 
                      exchange on bullet-in boards</li>
+  <li>supersoft-util-n: File (and System) Utilities from Supersoft. Read the help files (esp. before using
+                     disk.com). (I removed non-functional programs, like cpu.com and versions of diff.com, 
+                     that didn't run on Agon).</li>
 </ul>
 
 Updates to Nihirash's disk images:<br>
